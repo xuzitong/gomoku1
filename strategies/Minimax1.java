@@ -11,16 +11,17 @@ import java.util.Arrays;
  *
  * @author CHRIST
  */
-public class Minimax {
+public class Minimax1 {
     final static int N=2;//depth of the tree.
-    final static int SIZE=20;
+    final static int SIZE=10;
     int[][] board=new int[SIZE][SIZE];
-   public Minimax(){
+   public Minimax1(){
     int i;
     for(i=0;i<SIZE;i++)
     {
         Arrays.fill(board[i], 0);
     }
+   
 }
    //a player move his piece.
     public void movea(int i, int j){
@@ -42,7 +43,6 @@ public class Minimax {
         //player a
         if(player=='a')
         {
-                      
             //first, horizontally .
         for(i=0;i<SIZE;i++)
         {
@@ -240,7 +240,6 @@ public class Minimax {
         //player b.
       if(player=='b')
         {
-           
             //first, horizontally .
         for(i=0;i<SIZE;i++)
         {
@@ -437,7 +436,7 @@ public class Minimax {
         }
         return consecutive;
     }
-    public int score(int consecutive[],int[] ends,boolean currentturn){
+    public int score(int consecutive[],int[] ends){
         int i;
         int sum=0;
         for(i=0;i<300;i++)
@@ -450,24 +449,20 @@ public class Minimax {
             switch(consecutive[i])
             {
                 case 4: switch(ends[i])
-                { case 0: if(currentturn) sum+=20000;
-                    else sum+=10000;
-                    case 1:if(currentturn) sum+=10000;
-                    else sum+=5000;
+                { case 0: sum+=20000;
+                    case 1: sum+=10000;
                 }
                 case 3: switch(ends[i])
                 {
-                    case 0:if(currentturn) sum+=2000;
-                    else sum+=20;
-                    case 1:if(currentturn) sum+=10;
-                    else sum+=5;
+                    case 0:sum+=2000;
+                    case 1: sum+=10;
                 }
                 case 2: switch(ends[i])
                 {
-                    case 0:if(currentturn) sum+=5;
-                    else sum+=2;
-                    case 1:if(currentturn) sum+=3;
-                }
+                    case 0: sum+=5;
+                    case 1:sum+=3;
+                } 
+              
             }
         }
         return sum;
@@ -481,7 +476,7 @@ public class Minimax {
     {
         board[i][j]=0;
     }
-    public int alphabeta(int m,int n,int depth,char player,int alpha, int beta){
+     public int alphabeta(int m,int n,int depth,char player,int alpha, int beta){
         int bestvalue;
         int i,j;
         int label;
@@ -500,7 +495,7 @@ public class Minimax {
         { movea(m,n);
         consecutive1=consecutivecheck('a',ends1);
         consecutive2=consecutivecheck('b',ends2);
-        label=score(consecutive1,ends1,false)-score(consecutive2,ends2,true);
+        label=score(consecutive1,ends1)-score(consecutive2,ends2);
         elimimovea(m,n);
         return label;
         }
@@ -534,7 +529,7 @@ public class Minimax {
         { moveb(m,n);
         consecutive1=consecutivecheck('a',ends1);
         consecutive2=consecutivecheck('b',ends2);
-        label=score(consecutive1,ends1,true)-score(consecutive2,ends2,false);
+        label=score(consecutive1,ends1)-score(consecutive2,ends2);
         elimimoveb(m,n);
         return label;
         }

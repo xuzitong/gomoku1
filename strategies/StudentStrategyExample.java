@@ -18,7 +18,9 @@ import gomoku.*;
 
 public class StudentStrategyExample implements ComputerStrategy {
 
+     
 	@Override
+        
 	public Location getMove(SimpleBoard board, int player) {
 		// let's operate on 2-d array
 		int[][] b = board.getBoard();
@@ -26,7 +28,7 @@ public class StudentStrategyExample implements ComputerStrategy {
                 Minimax minimax=new Minimax();
                 minimax.board=b;
                position= minimax.getnextb();
-               
+                
 		return new Location(position[0], position[1]);
 	}
 

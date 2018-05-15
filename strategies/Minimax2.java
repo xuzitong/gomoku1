@@ -11,11 +11,11 @@ import java.util.Arrays;
  *
  * @author CHRIST
  */
-public class Minimax {
-    final static int N=2;//depth of the tree.
-    final static int SIZE=20;
+public class Minimax2 {
+    final static int N=1;//depth of the tree.
+    final static int SIZE=10;
     int[][] board=new int[SIZE][SIZE];
-   public Minimax(){
+   public Minimax2(){
     int i;
     for(i=0;i<SIZE;i++)
     {
@@ -442,9 +442,10 @@ public class Minimax {
         int sum=0;
         for(i=0;i<300;i++)
         {
-            if(consecutive[i]==5)
+             if(consecutive[i]==5)
                 sum+=200000;
-            else if(ends[i]==2)
+             else
+           if(ends[i]==2)
             {   sum+=0;}
             else
             switch(consecutive[i])
@@ -481,7 +482,7 @@ public class Minimax {
     {
         board[i][j]=0;
     }
-    public int alphabeta(int m,int n,int depth,char player,int alpha, int beta){
+     public int alphabeta(int m,int n,int depth,char player,int alpha, int beta){
         int bestvalue;
         int i,j;
         int label;

@@ -8,15 +8,12 @@ public class DummyStrategy implements ComputerStrategy {
 	public Location getMove(SimpleBoard board, int player) {
 		// let's operate on 2-d array
 		int[][] b = board.getBoard();
-		for (int row = 0; row < b.length; row++) {
-			for (int col = 0; col < b[0].length; col++) {
-				if (b[row][col] == SimpleBoard.EMPTY) {
-					// first empty location
-					return new Location(row, col);
-				}
-			}
-		}
-		return null;
+		int[] position=new int[2];
+                Minimax1 minimax1=new Minimax1();
+                minimax1.board=b;
+                position=minimax1.getnextb();
+             
+                return new Location(position[0], position[1]);
 	}
 
 	@Override
